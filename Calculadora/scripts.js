@@ -2,6 +2,10 @@ const wrapper = document.querySelector(".wrapper");
 const display = document.getElementById("display");
 const keys = document.querySelector(".pad");
 
+let firstValue = 0,
+  lastValue = 0,
+  operator = "";
+
 keys.addEventListener("click", (element) => {
   if (element.target.matches("button")) {
     const key = element.target;
@@ -10,11 +14,7 @@ keys.addEventListener("click", (element) => {
     const displayNumber = display.textContent;
 
     if (!action) {
-      if (displayNumber === "0") {
-        display.textContent = keyContent;
-      } else {
-        display.textContent = displayNumber + keyContent;
-      }
+      insertNumber(keyContent);
     }
 
     if (
@@ -23,7 +23,7 @@ keys.addEventListener("click", (element) => {
       action === "multiply" ||
       action === "divide"
     ) {
-      console.log("its an operator");
+      insertOperator(action);
     }
 
     if (action === "decimal") {
@@ -35,7 +35,14 @@ keys.addEventListener("click", (element) => {
     }
 
     if (action === "calculate") {
-      console.log("its equals");
+      calculate();
+    }
+
+    if (action === "clear") {
+      firstValue = 0;
+      lastValue = 0;
+      operator = "";
+      display.textContent = "0";
     }
   }
 });
@@ -50,11 +57,73 @@ document.addEventListener("keydown", (e) => {
     }
   }
 
-  if (Number(e.key)) {
-    if (display.textContent === "0") {
-      display.textContent = e.key;
-    } else {
-      display.textContent = display.textContent + e.key;
-    }
+  switch (e.key) {
+    case "+":
+      insertOperator("add");
+      break;
+    case "-":
+      insertOperator("subtract");
+      break;
+    case "*":
+      insertOperator("multiply");
+      break;
+    case "/":
+      insertOperator("divide");
+      break;
+  }
+
+  if (e.key === "Enter") {
+    calculate();
+  }
+
+  if (Number(e.key) >= 0) {
+    insertNumber(e.key);
   }
 });
+
+function calculate() {
+  let value;
+  switch (operator) {
+    case "add":
+      value = firstValue + lastValue;
+      break;
+    case "subtract":
+      value = firstValue - lastValue;
+      break;
+    case "multiply":
+      value = firstValue * lastValue;
+      break;
+    case "divide":
+      value = firstValue / lastValue;
+      break;
+  }
+  if (value.toString().includes(".")) {
+    value = value.toFixed(4).toString();
+  } else {
+    value = value.toString();
+  }
+  display.textContent = value;
+}
+
+function insertOperator(action) {
+  operator = action;
+  display.textContent = "0";
+  console.log(operator);
+}
+
+function insertNumber(value) {
+  let aux;
+  if (value) {
+    if (display.textContent === "0") {
+      aux = value;
+    } else {
+      aux = display.textContent + value;
+    }
+    if (operator) {
+      lastValue = Number(aux);
+    } else {
+      firstValue = Number(aux);
+    }
+    display.textContent = aux;
+  }
+}
