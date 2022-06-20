@@ -1,0 +1,25 @@
+body{
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container{
+    max-width: 500px;
+    margin: 24px auto;
+}
+
+.lista{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lista .item{
+    margin-bottom: 8px;
+}
+
+.checked_label{
+    text-decoration: line-through;
+    color: gray;
+}

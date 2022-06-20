@@ -4,7 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
     <title>Lista de Tarefas</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1 class="titulo">Lista de Tarefas</h1>
+      <ul class="lista">
+        <li class="item">
+          <label id="1">
+            <input id="1" type="checkbox" onclick="checkItem(this)" />
+            Aprender HTML
+          </label>
+        </li>
+        <li class="item">
+          <label id="2">
+            <input id="2" type="checkbox" onclick="checkItem(this)" />
+            Aprender CSS
+          </label>
+        </li>
+        <li class="item">
+          <label id="3">
+            <input id="3" type="checkbox" onclick="checkItem(this)" />
+            Aprender Javascript
+          </label>
+        </li>
+        <li class="item">
+          <label id="4">
+            <input id="4" type="checkbox" onclick="checkItem(this)" />
+            Aprender Angular
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <script src="./scripts.js"></script>
+  </body>
 </html>
