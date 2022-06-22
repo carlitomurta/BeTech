@@ -1,13 +1,46 @@
 const TAREFAS_KEY = "tarefas";
+const tarefas = JSON.parse(localStorage.getItem(TAREFAS_KEY));
 
-const tarefas = localStorage.getItem(TAREFAS_KEY);
+const iniciar = () => {
+  construir();
+};
+
+const construir = () => {
+  // const conteudoEl = document.getElementById("conteudo");
+  const lista = document.getElementById("lista");
+  tarefas.forEach((item) => {
+    lista.innerHTML += `
+    <li class="item">
+    <label id="${item.id}">
+      <input id="${item.id}" type="checkbox" ${
+      item.checked ? "checked" : ""
+    } onclick="checkItem(this)" />
+      ${item.nome}
+    </label>
+    <div class="categorias">
+      ${(() => {
+        let string = "";
+        if (item.categorias) {
+          item.categorias.forEach((categoria) => {
+            string += `<div class="pilula">${categoria}</div>`;
+          });
+        }
+        return string;
+      })()}
+    </div>
+  </li>`;
+  });
+};
 
 const checkItem = (el) => {
   const labelEl = document.getElementById(el.id);
   if (!el.checked) {
     labelEl.classList.remove("checked_label");
   } else {
-    localStorage.setItem(TAREFAS_KEY, JSON.stringify({ id: el.id, value: el.checked }));
+    localStorage.setItem(
+      TAREFAS_KEY,
+      JSON.stringify({ id: el.id, value: el.checked })
+    );
     labelEl.classList.add("checked_label");
   }
 };

@@ -7,37 +7,33 @@
     <link rel="stylesheet" href="./styles.css" />
     <title>Lista de Tarefas</title>
   </head>
-  <body>
+  <body onload="iniciar()">
     <div class="container">
-      <h1 class="titulo">Lista de Tarefas</h1>
-      <ul class="lista">
-        <li class="item">
-          <label id="1">
-            <input id="1" type="checkbox" onclick="checkItem(this)" />
-            Aprender HTML
-          </label>
-        </li>
-        <li class="item">
-          <label id="2">
-            <input id="2" type="checkbox" onclick="checkItem(this)" />
-            Aprender CSS
-          </label>
-        </li>
-        <li class="item">
-          <label id="3">
-            <input id="3" type="checkbox" onclick="checkItem(this)" />
-            Aprender Javascript
-          </label>
-        </li>
-        <li class="item">
-          <label id="4">
-            <input id="4" type="checkbox" onclick="checkItem(this)" />
-            Aprender Angular
-          </label>
-        </li>
-      </ul>
+      <div class="card">
+        <div class="header">
+          <h1 class="titulo">Lista de Tarefas</h1>
+          <button>Nova Tarefa</button>
+        </div>
+        <div id="conteudo">
+          <ul class="lista" id="lista"></ul>
+          <!-- Todo o conteudo dinamico aqui -->
+        </div>
+      </div>
     </div>
 
     <script src="./scripts.js"></script>
   </body>
 </html>
+
+<!-- <ul class="lista">
+  <li class="item">
+    <label id="1">
+      <input id="1" type="checkbox" onclick="checkItem(this)" />
+      Aprender HTML
+    </label>
+    <div class="categorias">
+      <div class="pilula">Estudo</div>
+      <div class="pilula">Tecnologia</div>
+    </div>
+  </li>
+</ul> -->
